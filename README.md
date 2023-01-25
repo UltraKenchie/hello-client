@@ -1,10 +1,11 @@
 <h1 align="center">Hello Client</h1>
+<p align="center"><a href="https://hello-client.onrender.com">https://hello-client.onrender.com</a></p>
 <p align="center">An app that manages your clients. It includes features such as client management, user management, and light / dark mode.</p>
 <p align="center">Built using Angular with 💘</p>
 
 # Start
 
-Run `ng serve --configuration development` or simply `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. Ask [me](https://github.com/ultrakenchie) for access to the super admin account
+Run `ng serve --configuration development` or simply `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. Ask [me](https://github.com/ultrakenchie) for access to the super admin account. Server repository is found [here](https://github.com/UltraKenchie/hello-client-server).
 
 ## Build
 
