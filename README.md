@@ -22,3 +22,4 @@ Run `ng lint` to execute the linting of the project.
 ## Future Feature Requests
 
 -   Add more extensive unit testing (it is just basic at the moment)
+-   Add server side rendering
