@@ -1,0 +1,28 @@
+@import "variables";
+
+:host {
+    display: block;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.modal {
+    min-width: 16rem;
+    background: $background-2;
+    border-radius: 0.4rem;
+    padding: 2.4rem;
+    position: relative;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.close {
+    position: absolute;
+    top: 2.4rem;
+    right: 2.4rem;
+}

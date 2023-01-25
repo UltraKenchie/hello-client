@@ -1,0 +1,73 @@
+<div class="container">
+    <h1 class="title">Users</h1>
+    <a [routerLink]="['/admin/add']">
+        <app-button [padding]="'0.8rem 1rem'">
+            <app-icon [size]="1.4" [iconName]="'add'" [marginRight]="0.4"></app-icon> Add User
+        </app-button>
+    </a>
+</div>
+<app-table [loading]="loading" [meta]="meta" (changeData$)="changePagination($event)">
+    <app-table-row [header]="true">
+        <app-table-column [minWidth]="'20rem'" [width]="'30%'" [sortable]="true" [sortBy]="'name'">
+            Display Name
+        </app-table-column>
+        <app-table-column [minWidth]="'16rem'" [width]="'30%'" [sortable]="true" [sortBy]="'email'">
+            Email
+        </app-table-column>
+        <app-table-column
+            [minWidth]="'12rem'"
+            [width]="'30%'"
+            [sortable]="true"
+            [sortBy]="'createdAt'">
+            Date Added
+        </app-table-column>
+        <app-table-column [minWidth]="'10rem'" [width]="'10%'">Action</app-table-column>
+    </app-table-row>
+    <app-table-row *ngFor="let user of users">
+        <app-table-column>
+            <a class="name" [routerLink]="['/admin/' + user.id]">
+                <ik-image
+                    [path]="user.avatar?.path || ''"
+                    [transformation]="[
+                        { 'height': '36', 'width': '36', 'r': 4, 'c-maintain_ratio': true }
+                    ]"></ik-image>
+                <span>{{ user.name }}</span>
+            </a>
+        </app-table-column>
+        <app-table-column>
+            <a [href]="'mailto:' + user.email">{{ user.email }}</a>
+        </app-table-column>
+        <app-table-column>{{ "01/22/2023" | date }}</app-table-column>
+        <app-table-column>
+            <app-button [borderRadius]="'100%'" [variant]="'none'" [padding]="'0.4rem'">
+                <app-icon
+                    appTooltip
+                    [appTooltipTemplate]="actionTemplate"
+                    [appTooltipTemplateContext]="{ id: user.id }"
+                    [appTooltipPosition]="'bottom'"
+                    [appTooltipType]="'click'"
+                    [iconName]="'more_horiz'">
+                </app-icon>
+            </app-button>
+        </app-table-column>
+    </app-table-row>
+</app-table>
+
+<ng-template #actionTemplate let-id="id">
+    <app-button [variant]="'outline'" [routerLink]="['/admin/' + id + '/edit']">
+        <app-icon [iconName]="'edit'" [size]="1.4" [marginRight]="0.4"></app-icon>
+        Edit
+    </app-button>
+    <app-button [variant]="'danger'" (clicked)="toggleDeleteModal(true, id)">
+        <app-icon [iconName]="'delete'" [size]="1.4" [marginRight]="0.4"></app-icon>
+        Delete
+    </app-button>
+</ng-template>
+
+<ng-template [(appModal)]="showDeleteModal" [appModalShowClose]="false">
+    <p>Delete user?</p>
+    <app-box [flex]="true" [padding]="1">
+        <app-button [variant]="'danger'" (clicked)="onDelete()">Delete</app-button>
+        <app-button (clicked)="toggleDeleteModal(false)">Cancel</app-button>
+    </app-box>
+</ng-template>

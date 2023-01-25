@@ -1,0 +1,11 @@
+<label [attr.for]="label">{{ label }}</label>
+
+<select [id]="label" [formControl]="inputControl" (change)="onChangeSelect($event)" [value]="value">
+    <option value="null" [disabled]="!defaultSelectable" selected>
+        <ng-container *ngIf="defaultSelectable"> None </ng-container>
+        <ng-container *ngIf="!defaultSelectable"> Select {{ label }} </ng-container>
+    </option>
+    <option *ngFor="let option of options" [value]="option.value">
+        {{ option.label }}
+    </option>
+</select>

@@ -1,0 +1,18 @@
+@import "variables";
+
+:host {
+    display: inline-flex;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+
+    &.primary {
+        background: $badge-bg-1;
+        color: $badge-c-1;
+    }
+
+    &.secondary {
+        background: $badge-bg-2;
+        color: $badge-c-2;
+    }
+}

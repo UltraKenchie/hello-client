@@ -1,0 +1,92 @@
+<form class="container" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="loading" class="g-loader">
+        <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+    <div class="form">
+        <div class="info">
+            <app-input
+                [label]="'Organization Name'"
+                [formControlName]="'organizationName'"
+                [placeholder]="'Google'">
+            </app-input>
+            <app-input
+                [label]="'Contact Name'"
+                [formControlName]="'contactName'"
+                [placeholder]="'John Doe'">
+            </app-input>
+            <app-input
+                [label]="'Contact Email'"
+                [formControlName]="'contactEmail'"
+                [placeholder]="'johndoe@gmail.com'"
+                [type]="'email'">
+            </app-input>
+            <app-input
+                [label]="'Contact Phone Number'"
+                [formControlName]="'contactPhoneNumber'"
+                [placeholder]="'+01432543992'"
+                [type]="'tel'">
+            </app-input>
+            <app-select
+                class="select"
+                [label]="'Status'"
+                [formControlName]="'status'"
+                [options]="[
+                    { label: 'Inactive', value: false },
+                    { label: 'Active', value: true }
+                ]"></app-select>
+        </div>
+        <div>
+            <div class="upload">
+                <app-upload-image
+                    [label]="'Organization Image'"
+                    [formControlName]="'organizationImage'">
+                </app-upload-image>
+                <app-upload-image [label]="'Contact Image'" [formControlName]="'contactImage'">
+                </app-upload-image>
+            </div>
+            <div>
+                <app-select
+                    class="select"
+                    [label]="'Assigned'"
+                    [formControlName]="'assigned'"
+                    [defaultSelectable]="true"
+                    [options]="userOptions"></app-select>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <app-button
+            [type]="'submit'"
+            [variant]="'outline'"
+            [size]="'10rem'"
+            [isActionButton]="true">
+            <app-icon [iconName]="'save'"></app-icon>
+            <span>Save</span>
+        </app-button>
+        <app-button
+            [variant]="'outline'"
+            [size]="'10rem'"
+            [isActionButton]="true"
+            (clicked)="onCancel()">
+            <app-icon [iconName]="'close'"></app-icon>
+            <span>Cancel</span>
+        </app-button>
+        <app-button
+            *ngIf="client"
+            [variant]="'danger'"
+            [size]="'10rem'"
+            [isActionButton]="true"
+            (clicked)="toggleDeleteModal(true)">
+            <app-icon [iconName]="'delete'"></app-icon>
+            <span>Delete</span>
+        </app-button>
+    </div>
+</form>
+
+<ng-template [(appModal)]="showDeleteModal" [appModalShowClose]="false">
+    <p>Delete client?</p>
+    <app-box [flex]="true" [padding]="1">
+        <app-button [variant]="'danger'" (clicked)="onDelete()">Delete</app-button>
+        <app-button (clicked)="toggleDeleteModal(false)">Cancel</app-button>
+    </app-box>
+</ng-template>

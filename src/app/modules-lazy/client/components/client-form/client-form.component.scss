@@ -1,0 +1,37 @@
+@import "variables";
+
+.container {
+    position: relative;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 3.6rem;
+    margin-bottom: 1rem;
+
+    @include phone {
+        grid-template-columns: 100%;
+        gap: 1rem;
+    }
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.select {
+    max-width: 16rem;
+}
+
+.upload {
+    display: flex;
+    gap: 2.4rem;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,9 @@
+<h1>{{ clientId === null ? "Add" : "Edit" }} Client</h1>
+<app-client-form
+    [users]="users"
+    [client]="client"
+    [loading]="loading"
+    (submit$)="onSubmit($event)"
+    (delete$)="onDelete()"
+    (cancel$)="onCancel()">
+</app-client-form>

@@ -1,0 +1,21 @@
+@import "variables";
+
+:host {
+    display: block;
+}
+
+.header {
+    top: 0;
+    position: sticky;
+    height: 5.6rem;
+    width: 100%;
+    border-bottom: 0.1rem solid $border-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 2.4rem;
+}

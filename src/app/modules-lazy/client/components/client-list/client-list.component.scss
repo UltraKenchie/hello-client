@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 3.2rem;
+    font-weight: 600;
+}
+
+.organization {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.client {
+    display: flex;
+    gap: 1rem;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.email {
+    font-size: 1.2rem;
+}
+
+.phone {
+    display: flex;
+}
+
+.assigned {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

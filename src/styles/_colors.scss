@@ -1,0 +1,28 @@
+$color-1: var(--color-1, #000);
+$color-2: var(--color-2, rgb(0, 0, 0, 0.5));
+$color-3: var(--color-3, #fff);
+
+$background-1: var(--background-1, #fff);
+$background-2: var(--background-2, rgb(235, 235, 235));
+
+$border-1: var(--border-1, rgb(220, 220, 220));
+$border-2: var(--border-2, rgb(165, 165, 165));
+
+$tooltip-c: var(--tooltip-c, #000);
+$tooltip-bg: var(--tooltip-bg, rgb(236, 236, 236));
+$tooltip-border: var(--tooltip-border, rgb(218, 218, 218));
+
+$button-bg: var(--button-bg, rgb(71, 123, 236));
+$button-c: var(--button-c, #fff);
+
+$button-bg-danger: var(--button-bg-danger, rgb(236, 71, 71));
+$button-c-danger: var(--button-c-danger, #fff);
+
+$link-1: var(--link-1, #000);
+$link-2: var(--link-2, #551a8b);
+
+$badge-bg-1: var(--badge-bg-1, rgb(226, 221, 255));
+$badge-bg-2: var(--badge-bg-2, rgb(253, 181, 181));
+
+$badge-c-1: var(--badge-c-1, rgb(73, 63, 128));
+$badge-c-2: var(--badge-c-2, rgb(184, 83, 83));

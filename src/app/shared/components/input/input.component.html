@@ -1,0 +1,7 @@
+<label [attr.for]="label">{{ label }}</label>
+<input
+    [id]="label"
+    [type]="type"
+    [formControl]="inputControl"
+    (input)="onKey($event)"
+    [placeholder]="placeholder" />

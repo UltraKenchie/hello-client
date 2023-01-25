@@ -1,0 +1,60 @@
+{
+    "root": true,
+    "ignorePatterns": ["projects/**/*"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@angular-eslint", "@typescript-eslint"],
+    "parserOptions": {
+        "sourceType": "module",
+        "project": ["./tsconfig.eslint.json"]
+    },
+    "overrides": [
+        {
+            "files": ["*.ts"],
+            "extends": [
+                "eslint:recommended",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
+            "rules": {
+                "@angular-eslint/directive-selector": [
+                    "error",
+                    {
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
+                    }
+                ],
+                "@angular-eslint/component-selector": [
+                    "error",
+                    {
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
+                    }
+                ]
+            }
+        },
+        {
+            "files": ["*.spec.ts"],
+            "rules": {
+                "@typescript-eslint/no-unused-vars-experimental": "off",
+                "@typescript-eslint/no-unsafe-call": "off",
+                "@typescript-eslint/no-unused-vars": "off",
+                "@typescript-eslint/no-unsafe-assignment": "off",
+                "@typescript-eslint/no-unsafe-member-access": "off",
+                "class-methods-use-this": "off",
+                "@typescript-eslint/no-explicit-any": "off",
+                "@typescript-eslint/no-empty-function": "off", // Empty functions are used for mocks.
+                "@typescript-eslint/require-await": "off", // Jest use async function for test() and it()
+                "@typescript-eslint/no-floating-promises": "off", // Jest use async function for test() and it()
+                "@typescript-eslint/unbound-method": "off" // not working for spy
+            }
+        },
+        {
+            "files": ["*.html"],
+            "extends": ["plugin:@angular-eslint/template/recommended"],
+            "rules": {}
+        }
+    ]
+}

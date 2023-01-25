@@ -1,0 +1,67 @@
+@import "variables";
+
+:host {
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.container {
+    border: 0.1rem dashed $border-2;
+    position: relative;
+    height: calc(100% - 2.2rem);
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-1;
+
+    &.circle {
+        border-radius: 50%;
+    }
+
+    @include phone {
+        .options {
+            visibility: visible;
+        }
+    }
+
+    &:hover {
+        .options {
+            visibility: visible;
+        }
+    }
+}
+
+.upload-input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.options {
+    visibility: hidden;
+    display: flex;
+    gap: 1rem;
+    z-index: 2;
+}

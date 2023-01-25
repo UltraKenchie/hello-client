@@ -1,0 +1,15 @@
+<div @modal>
+    <ng-container *ngIf="template">
+        <div class="modal">
+            <app-button
+                *ngIf="showClose"
+                class="close"
+                [variant]="'outline'"
+                (clicked)="closed.emit()">
+                <app-icon [iconName]="'close'"></app-icon>
+            </app-button>
+            <h2 *ngIf="title" class="title">{{ title }}</h2>
+            <ng-container *ngTemplateOutlet="template"></ng-container>
+        </div>
+    </ng-container>
+</div>

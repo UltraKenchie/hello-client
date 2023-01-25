@@ -1,0 +1,31 @@
+<label [attr.for]="label">{{ label }}</label>
+<div class="container">
+    <ik-image *ngIf="!!value && !isBuffer" [path]="value || ''" class="image"></ik-image>
+    <img *ngIf="!!value && isBuffer" [src]="value" class="image" />
+
+    <ng-container *ngIf="!!value">
+        <div class="options">
+            <app-button [isActionButton]="true" [style]="'outline'" [appTooltip]="'Select Image'">
+                <app-icon [size]="1.6" [iconName]="'photo'"> </app-icon>
+                <input
+                    class="upload-input"
+                    type="file"
+                    accept="image/*"
+                    (change)="addCoverImage($event)" />
+            </app-button>
+            <app-button
+                [isActionButton]="true"
+                [variant]="'danger'"
+                [style]="'error'"
+                (clicked)="remove()"
+                [appTooltip]="'Remove Image'">
+                <app-icon [size]="1.6" [iconName]="'delete'"> </app-icon>
+            </app-button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!value">
+        <app-icon [iconName]="'add'"></app-icon>
+        <input class="upload-input" type="file" accept="image/*" (change)="addCoverImage($event)" />
+    </ng-container>
+</div>

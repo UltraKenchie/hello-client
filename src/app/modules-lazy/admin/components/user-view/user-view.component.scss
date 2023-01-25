@@ -1,0 +1,28 @@
+@import "variables";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.4rem;
+    position: relative;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.assigned {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}

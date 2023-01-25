@@ -1,0 +1,131 @@
+<div class="container">
+    <h1 class="title">Clients</h1>
+    <a [routerLink]="['/clients/add']">
+        <app-button [padding]="'0.8rem 1rem'">
+            <app-icon [size]="1.4" [iconName]="'add'" [marginRight]="0.4"></app-icon> Add Client
+        </app-button>
+    </a>
+</div>
+<app-table [loading]="loading" [meta]="meta" (changeData$)="changePagination($event)">
+    <app-table-row [header]="true">
+        <app-table-column
+            [minWidth]="'16rem'"
+            [width]="'20%'"
+            [sortable]="true"
+            [sortBy]="'organizationName'">
+            Organization
+        </app-table-column>
+        <app-table-column
+            [minWidth]="'20rem'"
+            [width]="'20%'"
+            [sortable]="true"
+            [sortBy]="'contactName'">
+            Name
+        </app-table-column>
+        <app-table-column [minWidth]="'10rem'" [width]="'10%'">Contact</app-table-column>
+        <app-table-column
+            [minWidth]="'14rem'"
+            [width]="'15%'"
+            [sortable]="true"
+            [sortBy]="'assigned'">
+            Assigned
+        </app-table-column>
+        <app-table-column
+            [minWidth]="'10rem'"
+            [width]="'10%'"
+            [sortable]="true"
+            [sortBy]="'status'">
+            Status
+        </app-table-column>
+        <app-table-column
+            [minWidth]="'12rem'"
+            [width]="'15%'"
+            [sortable]="true"
+            [sortBy]="'createdAt'">
+            Date Added
+        </app-table-column>
+        <app-table-column [minWidth]="'8rem'" [width]="'10%'">Action</app-table-column>
+    </app-table-row>
+    <app-table-row *ngFor="let client of clients">
+        <app-table-column>
+            <a class="organization" [routerLink]="['/clients/' + client.id]">
+                <ik-image
+                    *ngIf="client.organizationImage?.path"
+                    [path]="client.organizationImage?.path || ''"
+                    [transformation]="[{ height: '36', width: '36', r: 4 }]"></ik-image>
+                <span>{{ client.organizationName }}</span>
+            </a>
+        </app-table-column>
+        <app-table-column>
+            <div class="client">
+                <a *ngIf="client.contactImage" [routerLink]="['/clients/' + client.id]">
+                    <ik-image
+                        [path]="client.contactImage.path"
+                        [transformation]="[{ height: '36', width: '36', r: 4 }]"></ik-image>
+                </a>
+                <div class="client-info">
+                    <a class="name" [routerLink]="['/clients/' + client.id]">
+                        {{ client.contactName }}
+                    </a>
+                    <a class="email" [href]="'mailto:' + client.contactEmail">
+                        {{ client.contactEmail }}
+                    </a>
+                </div>
+            </div>
+        </app-table-column>
+        <app-table-column>
+            <a class="phone" [href]="'tel:' + client.contactPhoneNumber">
+                <app-icon [iconName]="'call'" [marginRight]="0.4"></app-icon> Call
+            </a>
+        </app-table-column>
+        <app-table-column>
+            <ng-container *ngIf="client.assigned">
+                <a class="assigned" [routerLink]="['/admin/' + client.assigned.id]">
+                    <ik-image
+                        *ngIf="client.assigned.avatar"
+                        [path]="client.assigned.avatar.path"
+                        [transformation]="[{ height: '36', width: '36', r: 4 }]"></ik-image>
+                    <span>{{ client.assigned.name }}</span>
+                </a>
+            </ng-container>
+            <ng-container *ngIf="!client.assigned">None</ng-container>
+        </app-table-column>
+        <app-table-column>
+            <app-badge [type]="client.status ? 'primary' : 'secondary'">
+                {{ client.status ? "Active" : "Inactive" }}
+            </app-badge>
+        </app-table-column>
+        <app-table-column>{{ client.createdAt | date }}</app-table-column>
+        <app-table-column>
+            <app-button [borderRadius]="'100%'" [variant]="'none'" [padding]="'0.4rem'">
+                <app-icon
+                    appTooltip
+                    [appTooltipTemplate]="actionTemplate"
+                    [appTooltipTemplateContext]="{ id: client.id }"
+                    [appTooltipPosition]="'bottom'"
+                    [appTooltipType]="'click'"
+                    [iconName]="'more_horiz'">
+                </app-icon>
+            </app-button>
+        </app-table-column>
+    </app-table-row>
+</app-table>
+
+<ng-template #actionTemplate let-id="id">
+    <app-button [variant]="'outline'" [routerLink]="['/clients/' + id + '/edit']">
+        <app-icon [iconName]="'edit'" [size]="1.4" [marginRight]="0.4"></app-icon>
+        Edit
+    </app-button>
+    <app-button [variant]="'danger'" (clicked)="toggleDeleteModal(true, id)">
+        <app-icon [iconName]="'delete'" [size]="1.4" [marginRight]="0.4"></app-icon>
+        Delete
+    </app-button>
+</ng-template>
+
+<ng-template [(appModal)]="showDeleteModal" [appModalShowClose]="false">
+    <p>Delete client?</p>
+    <app-box [flex]="true" [padding]="1">
+        <app-button [variant]="'danger'" (clicked)="onDelete()">Delete</app-button>
+        <app-button (clicked)="toggleDeleteModal(false)">Cancel</app-button>
+    </app-box>
+</ng-template>

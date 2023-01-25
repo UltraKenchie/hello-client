@@ -1,0 +1,24 @@
+@import "variables";
+
+:host {
+    display: block;
+    position: relative;
+}
+
+.tooltip {
+    font-size: 1.2rem;
+
+    &.use-styles {
+        border-radius: 0.4rem;
+        border: 0.1rem solid $tooltip-border;
+        background-color: $tooltip-bg;
+        color: $tooltip-c;
+        padding: 0.7rem;
+    }
+}
+
+.template {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}

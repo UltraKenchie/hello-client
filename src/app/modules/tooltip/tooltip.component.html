@@ -1,0 +1,8 @@
+<div class="tooltip" [class.use-styles]="useStyles">
+    <span *ngIf="text">{{ text }}</span>
+    <div *ngIf="template" class="template">
+        <ng-container
+            [ngTemplateOutlet]="template"
+            [ngTemplateOutletContext]="templateContext"></ng-container>
+    </div>
+</div>

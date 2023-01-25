@@ -1,0 +1,42 @@
+<div *ngIf="!!user" class="container">
+    <div *ngIf="loading" class="g-loader">
+        <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+    <div class="info">
+        <ik-image
+            *ngIf="user.avatar"
+            [path]="user.avatar.path"
+            [transformation]="[{ height: '150', width: '150', r: 4 }]"></ik-image>
+        <h3>{{ user.name }}</h3>
+        <a [href]="'mailto:' + user.email">{{ user.email }}</a>
+    </div>
+    <div class="actions">
+        <a [routerLink]="['/admin/' + user.id + '/edit']">
+            <app-button
+                [variant]="'outline'"
+                [size]="'12rem'"
+                [borderRadius]="'1rem'"
+                [isActionButton]="true">
+                <app-icon [iconName]="'edit'"></app-icon>
+                <span>Edit</span>
+            </app-button>
+        </a>
+        <app-button
+            [variant]="'danger'"
+            [size]="'12rem'"
+            [borderRadius]="'1rem'"
+            [isActionButton]="true"
+            (clicked)="toggleDeleteModal(true)">
+            <app-icon [iconName]="'delete'"></app-icon>
+            <span>Delete</span>
+        </app-button>
+    </div>
+</div>
+
+<ng-template [(appModal)]="showDeleteModal" [appModalShowClose]="false">
+    <p>Delete user?</p>
+    <app-box [flex]="true" [padding]="1">
+        <app-button [variant]="'danger'" (clicked)="onDelete()">Delete</app-button>
+        <app-button (clicked)="toggleDeleteModal(false)">Cancel</app-button>
+    </app-box>
+</ng-template>

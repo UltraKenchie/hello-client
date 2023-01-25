@@ -1,0 +1,6 @@
+<form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1 class="brand">HELLO CLIENT</h1>
+    <app-input [label]="'Email'" [formControlName]="'email'"></app-input>
+    <app-input [label]="'Password'" [formControlName]="'password'" [type]="'password'"></app-input>
+    <app-button [type]="'submit'" [align]="'center'">Login</app-button>
+</form>

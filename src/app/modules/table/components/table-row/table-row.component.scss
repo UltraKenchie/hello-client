@@ -1,0 +1,17 @@
+@import "variables";
+
+:host {
+    font-size: 1.4rem;
+    color: $color-1;
+    min-height: 5rem;
+    display: flex;
+    position: relative;
+
+    &.header {
+        color: $color-2;
+    }
+
+    &:not(.header):hover {
+        background: $background-2;
+    }
+}

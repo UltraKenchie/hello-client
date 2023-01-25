@@ -1,0 +1,20 @@
+@import "variables";
+
+:host {
+    display: flex;
+    align-items: center;
+}
+
+.pagination {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: $color-1;
+}
+
+.show-items {
+    width: 12rem;
+    align-self: flex-end;
+}

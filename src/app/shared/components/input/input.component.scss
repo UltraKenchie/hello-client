@@ -1,0 +1,26 @@
+@import "variables";
+
+:host {
+    display: block;
+    width: 100%;
+}
+
+label {
+    display: block;
+    text-align: left;
+}
+
+input {
+    width: inherit;
+    height: inherit;
+    padding: 0.4rem 1rem;
+    border: 0.1rem solid $border-1;
+    border-radius: 1rem;
+    height: 3.6rem;
+    background: $background-1;
+    color: $color-1;
+
+    &::placeholder {
+        color: $color-2;
+    }
+}

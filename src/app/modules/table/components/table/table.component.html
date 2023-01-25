@@ -1,0 +1,9 @@
+<div class="container">
+    <div *ngIf="loading" class="g-loader">
+        <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+    <div class="rows">
+        <ng-content select="app-table-row"></ng-content>
+    </div>
+    <app-table-pagination *ngIf="meta"> </app-table-pagination>
+</div>

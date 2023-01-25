@@ -1,0 +1,17 @@
+<button
+    class="button"
+    [class.disabled]="disabled"
+    [style.padding]="padding"
+    [type]="type"
+    (click)="click()">
+    <ng-container *ngIf="isActionButton; else defaultTemplate">
+        <div class="action">
+            <ng-container *ngTemplateOutlet="defaultTemplate">
+                <ng-content></ng-content>
+            </ng-container>
+        </div>
+    </ng-container>
+    <ng-template #defaultTemplate>
+        <ng-content></ng-content>
+    </ng-template>
+</button>

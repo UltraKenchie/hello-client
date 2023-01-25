@@ -1,0 +1,10 @@
+<ng-content></ng-content>
+<ng-container *ngIf="header && sortable">
+    <app-icon
+        class="sort"
+        [size]="1.4"
+        [iconName]="'sort'"
+        [class.asc]="sortType === 'asc'"
+        [class.desc]="sortType === 'desc'">
+    </app-icon>
+</ng-container>

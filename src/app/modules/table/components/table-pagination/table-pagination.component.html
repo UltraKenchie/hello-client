@@ -1,0 +1,24 @@
+<ng-container *ngIf="meta">
+    <div class="pagination">
+        <app-button
+            [padding]="'0 1rem'"
+            [variant]="'outline'"
+            [disabled]="meta.currentPage <= 1"
+            (clicked)="prev()">
+            <app-icon [iconName]="'navigate_before'"></app-icon>
+        </app-button>
+        <span>{{ meta.currentPage }}</span>
+        <app-button
+            [padding]="'0 1rem'"
+            [variant]="'outline'"
+            [disabled]="meta.currentPage >= meta.totalPages"
+            (clicked)="next()">
+            <app-icon [iconName]="'navigate_next'"></app-icon>
+        </app-button>
+    </div>
+    <app-select
+        class="show-items"
+        [options]="showItems"
+        [value]="meta.perPage"
+        (valueChange)="changeSize($event)"></app-select>
+</ng-container>

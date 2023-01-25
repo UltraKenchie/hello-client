@@ -1,0 +1,86 @@
+@import "variables";
+
+:host {
+    outline: 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.6rem;
+    border: 0.1rem solid transparent;
+    min-height: 3.6rem;
+    position: relative;
+    color: $color-1;
+
+    &.primary {
+        background: $button-bg;
+        color: $button-c;
+    }
+
+    &.danger {
+        background: $button-bg-danger;
+        color: $button-c-danger;
+    }
+
+    &.disabled {
+        opacity: 0.5;
+    }
+
+    &:not(.disabled).hoverable {
+        button {
+            cursor: pointer;
+        }
+
+        &:not(.none):hover {
+            background: $button-bg;
+            color: $button-c;
+            border: 0.1rem solid transparent;
+        }
+
+        &.danger:hover {
+            background: $button-bg-danger;
+            color: $button-c-danger;
+        }
+    }
+
+    &.outline {
+        border: 0.1rem solid $border-1;
+    }
+
+    &.left {
+        justify-content: left;
+    }
+
+    &.center {
+        justify-content: center;
+    }
+
+    &.right {
+        justify-content: right;
+    }
+}
+
+button {
+    padding: 0;
+    outline: 0;
+    border: none;
+    background: transparent;
+    font-size: inherit;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: inherit;
+}
+
+.action {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    gap: 0.4rem;
+}

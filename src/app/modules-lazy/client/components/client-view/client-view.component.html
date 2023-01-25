@@ -1,0 +1,81 @@
+<div *ngIf="!!client" class="container">
+    <div *ngIf="loading" class="g-loader">
+        <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+    <div class="info">
+        <ik-image
+            *ngIf="client.organizationImage"
+            [path]="client.organizationImage.path"
+            [transformation]="[{ height: '150', width: '150', r: 4 }]"></ik-image>
+        <h3>{{ client.organizationName }}</h3>
+        <ik-image
+            *ngIf="client.contactImage"
+            [path]="client.contactImage.path"
+            [transformation]="[{ height: '75', width: '75', r: 4 }]"></ik-image>
+        <h1 class="title">{{ client.contactName }}</h1>
+        <a [href]="'mailto:' + client.contactEmail">{{ client.contactEmail }}</a>
+        <div class="assigned">
+            <ng-container *ngIf="client.assigned">
+                <span> Assigned: </span>
+                <a class="assigned" [routerLink]="['/admin/' + client.assigned.id]">
+                    <ik-image
+                        *ngIf="client.assigned.avatar"
+                        [path]="client.assigned.avatar.path"
+                        [transformation]="[{ height: '36', width: '36', r: 4 }]"></ik-image>
+                    <span>{{ client.assigned.name }}</span>
+                </a>
+            </ng-container>
+            <ng-container *ngIf="!client.assigned">Assigned: None</ng-container>
+        </div>
+    </div>
+    <div class="actions">
+        <a [href]="'tel:' + client.contactPhoneNumber">
+            <app-button
+                [variant]="'outline'"
+                [size]="'12rem'"
+                [borderRadius]="'1rem'"
+                [isActionButton]="true">
+                <app-icon [iconName]="'call'"></app-icon>
+                <span class="phone">{{ client.contactPhoneNumber }}</span>
+                <span>Call</span>
+            </app-button>
+        </a>
+        <a *ngIf="client.website" [href]="client.website">
+            <app-button
+                [variant]="'outline'"
+                [size]="'12rem'"
+                [borderRadius]="'1rem'"
+                [isActionButton]="true">
+                <app-icon [iconName]="'language'"></app-icon>
+                <span>Website</span>
+            </app-button>
+        </a>
+        <a [routerLink]="['/clients/' + client.id + '/edit']">
+            <app-button
+                [variant]="'outline'"
+                [size]="'12rem'"
+                [borderRadius]="'1rem'"
+                [isActionButton]="true">
+                <app-icon [iconName]="'edit'"></app-icon>
+                <span>Edit</span>
+            </app-button>
+        </a>
+        <app-button
+            [variant]="'danger'"
+            [size]="'12rem'"
+            [borderRadius]="'1rem'"
+            [isActionButton]="true"
+            (clicked)="toggleDeleteModal(true)">
+            <app-icon [iconName]="'delete'"></app-icon>
+            <span>Delete</span>
+        </app-button>
+    </div>
+</div>
+
+<ng-template [(appModal)]="showDeleteModal" [appModalShowClose]="false">
+    <p>Delete client?</p>
+    <app-box [flex]="true" [padding]="1">
+        <app-button [variant]="'danger'" (clicked)="onDelete()">Delete</app-button>
+        <app-button (clicked)="toggleDeleteModal(false)">Cancel</app-button>
+    </app-box>
+</ng-template>

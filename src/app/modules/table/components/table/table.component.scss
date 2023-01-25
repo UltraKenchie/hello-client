@@ -1,0 +1,12 @@
+.container {
+    display: block;
+    position: relative;
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+

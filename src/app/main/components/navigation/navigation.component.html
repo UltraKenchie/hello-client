@@ -1,0 +1,21 @@
+<div class="navigation">
+    <a
+        class="link"
+        [routerLink]="['/clients']"
+        [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{ exact: true }">
+        My Clients
+    </a>
+    <a
+        *ngIf="role === 'admin'"
+        class="link"
+        [routerLink]="['/admin']"
+        [routerLinkActive]="'active'"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Admin
+    </a>
+    <a class="link" (click)="logout()">Logout</a>
+    <app-button [variant]="'outline'" (clicked)="toggleTheme()">
+        <app-icon [iconName]="currentTheme === 'light' ? 'light_mode' : 'dark_mode'"></app-icon>
+    </app-button>
+</div>

@@ -1,0 +1,8 @@
+<h1>{{ userId === null ? "Add" : "Edit" }} User</h1>
+<app-user-form
+    [user]="user"
+    [loading]="loading"
+    (submit$)="onSubmit($event)"
+    (delete$)="onDelete()"
+    (cancel$)="onCancel()">
+</app-user-form>

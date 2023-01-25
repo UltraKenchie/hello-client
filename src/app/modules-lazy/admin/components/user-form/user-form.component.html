@@ -1,0 +1,57 @@
+<form class="container" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="loading" class="g-loader">
+        <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+    <div class="form">
+        <div class="info">
+            <app-input
+                [label]="'Email'"
+                [formControlName]="'email'"
+                [placeholder]="'john@helloclient.com'">
+            </app-input>
+            <app-input [label]="'Name'" [formControlName]="'name'" [placeholder]="'John Doe'">
+            </app-input>
+            <app-input [label]="'Password'" [type]="'password'" [formControlName]="'password'">
+            </app-input>
+        </div>
+        <div>
+            <app-upload-image [label]="'Organization Image'" [formControlName]="'avatar'">
+            </app-upload-image>
+        </div>
+    </div>
+    <div class="actions">
+        <app-button
+            [type]="'submit'"
+            [variant]="'outline'"
+            [size]="'10rem'"
+            [isActionButton]="true">
+            <app-icon [iconName]="'save'"></app-icon>
+            <span>Save</span>
+        </app-button>
+        <app-button
+            [variant]="'outline'"
+            [size]="'10rem'"
+            [isActionButton]="true"
+            (clicked)="onCancel()">
+            <app-icon [iconName]="'close'"></app-icon>
+            <span>Cancel</span>
+        </app-button>
+        <app-button
+            *ngIf="user"
+            [variant]="'danger'"
+            [size]="'10rem'"
+            [isActionButton]="true"
+            (clicked)="toggleDeleteModal(true)">
+            <app-icon [iconName]="'delete'"></app-icon>
+            <span>Delete</span>
+        </app-button>
+    </div>
+</form>
+
+<ng-template [(appModal)]="showDeleteModal" [appModalShowClose]="false">
+    <p>Delete user?</p>
+    <app-box [flex]="true" [padding]="1">
+        <app-button [variant]="'danger'" (clicked)="onDelete()">Delete</app-button>
+        <app-button (clicked)="toggleDeleteModal(false)">Cancel</app-button>
+    </app-box>
+</ng-template>
