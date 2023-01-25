@@ -57,6 +57,10 @@ export class ClientViewComponent implements OnInit, OnDestroy {
                     this.client = response.body;
                     this.cdr.detectChanges();
                 },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
+                },
                 complete: () => {
                     this.loading = false;
                     this.cdr.detectChanges();
@@ -88,6 +92,10 @@ export class ClientViewComponent implements OnInit, OnDestroy {
             this.clientRepository.delete(this.clientId).subscribe({
                 next: () => {
                     this.router.navigate(["/clients"]);
+                },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                 },
                 complete: () => {
                     this.loading = false;

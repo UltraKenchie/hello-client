@@ -89,6 +89,10 @@ export class ClientListComponent implements OnInit, OnDestroy {
                     this.meta = response.meta;
                     this.cdr.detectChanges();
                 },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
+                },
                 complete: () => {
                     this.loading = false;
                     this.cdr.detectChanges();

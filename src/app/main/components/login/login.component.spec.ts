@@ -6,6 +6,7 @@ import { LoginComponent } from "./login.component";
 import { LoginFormComponent } from "../login-form/login-form.component";
 import { AuthRepository } from "../../../core/repositories/auth.repository";
 import { of } from "rxjs";
+import { MatProgressSpinner } from "@angular/material/progress-spinner";
 
 describe("LoginComponent", () => {
     let component: LoginComponent;
@@ -16,7 +17,8 @@ describe("LoginComponent", () => {
             declarations: [
                 LoginComponent,
                 MockComponent(BoxComponent),
-                MockComponent(LoginFormComponent)
+                MockComponent(LoginFormComponent),
+                MockComponent(MatProgressSpinner)
             ],
             providers: [
                 {

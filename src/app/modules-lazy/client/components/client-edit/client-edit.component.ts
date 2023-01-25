@@ -71,6 +71,8 @@ export class ClientEditComponent implements OnInit, OnDestroy {
                     this.cdr.detectChanges();
                 },
                 error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                     this.router.navigate(["/clients"]);
                 },
                 complete: () => {
@@ -95,6 +97,10 @@ export class ClientEditComponent implements OnInit, OnDestroy {
                     next: (response) => {
                         this.router.navigate([`/clients/${response.body.id}`]);
                     },
+                    error: () => {
+                        this.loading = false;
+                        this.cdr.detectChanges();
+                    },
                     complete: () => {
                         this.loading = false;
                         this.cdr.detectChanges();
@@ -108,6 +114,10 @@ export class ClientEditComponent implements OnInit, OnDestroy {
             this.clientRepository.update(this.clientId, request).subscribe({
                 next: (response) => {
                     this.router.navigate([`/clients/${response.body.id}`]);
+                },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                 },
                 complete: () => {
                     this.loading = false;
@@ -133,6 +143,10 @@ export class ClientEditComponent implements OnInit, OnDestroy {
             this.clientRepository.delete(this.clientId).subscribe({
                 next: () => {
                     this.router.navigate(["/clients"]);
+                },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                 },
                 complete: () => {
                     this.loading = false;

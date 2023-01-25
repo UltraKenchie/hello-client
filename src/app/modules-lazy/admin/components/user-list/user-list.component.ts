@@ -62,6 +62,10 @@ export class UserListComponent implements OnInit, OnDestroy {
                 next: () => {
                     this.router.navigate(["/admin"]);
                 },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
+                },
                 complete: () => {
                     this.loading = false;
                     this.cdr.detectChanges();
@@ -91,6 +95,10 @@ export class UserListComponent implements OnInit, OnDestroy {
                 next: (response) => {
                     this.users = response.body;
                     this.meta = response.meta;
+                    this.cdr.detectChanges();
+                },
+                error: () => {
+                    this.loading = false;
                     this.cdr.detectChanges();
                 },
                 complete: () => {

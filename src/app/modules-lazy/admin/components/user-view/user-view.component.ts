@@ -60,6 +60,10 @@ export class UserViewComponent implements OnInit, OnDestroy {
                     this.user = response.body;
                     this.cdr.detectChanges();
                 },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
+                },
                 complete: () => {
                     this.loading = false;
                     this.cdr.detectChanges();
@@ -88,6 +92,10 @@ export class UserViewComponent implements OnInit, OnDestroy {
             this.authRepository.delete(this.userId).subscribe({
                 next: () => {
                     this.router.navigate(["/admin"]);
+                },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                 },
                 complete: () => {
                     this.loading = false;

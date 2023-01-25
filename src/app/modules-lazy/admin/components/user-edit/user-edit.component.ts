@@ -56,6 +56,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
                     this.cdr.detectChanges();
                 },
                 error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                     this.router.navigate(["/admin"]);
                 },
                 complete: () => {
@@ -79,6 +81,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
                     next: (response) => {
                         this.router.navigate([`/admin/${response.body.id}`]);
                     },
+                    error: () => {
+                        this.loading = false;
+                        this.cdr.detectChanges();
+                    },
                     complete: () => {
                         this.loading = false;
                         this.cdr.detectChanges();
@@ -92,6 +98,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
             this.authRepository.update(this.userId, request).subscribe({
                 next: (response) => {
                     this.router.navigate([`/admin/${response.body.id}`]);
+                },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                 },
                 complete: () => {
                     this.loading = false;
@@ -116,6 +126,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
             this.authRepository.delete(this.userId).subscribe({
                 next: () => {
                     this.router.navigate(["/admin"]);
+                },
+                error: () => {
+                    this.loading = false;
+                    this.cdr.detectChanges();
                 },
                 complete: () => {
                     this.loading = false;
